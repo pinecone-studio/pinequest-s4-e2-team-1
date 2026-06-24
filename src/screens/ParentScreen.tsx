@@ -74,6 +74,21 @@ export default function ParentScreen({ navigation }: { navigation: any }) {
           </Text>
         </LinearGradient>
 
+        {/* Dyslexia Test Card */}
+        <Pressable
+          style={styles.testCard}
+          onPress={() => navigation.navigate('DyslexiaTest')}
+        >
+          <View style={styles.testHeader}>
+            <Text style={styles.testEmoji}>🧠</Text>
+            <View style={{ flex: 1 }}>
+              <Text style={styles.testTitle}>Дислексийн шалгалт</Text>
+              <Text style={styles.testSubtitle}>4-7 насны хүүхдэд зориулсан эрт илрүүлгийн тест</Text>
+            </View>
+            <Text style={styles.testArrow}>→</Text>
+          </View>
+        </Pressable>
+
         <Pressable style={{ marginTop: 20, alignItems: 'center' }} onPress={() => navigation.navigate('Main')}>
           <Text style={styles.back}>← Нүүр</Text>
         </Pressable>
@@ -106,5 +121,11 @@ const styles = StyleSheet.create({
   tipHead: { flexDirection: 'row', alignItems: 'center', gap: 8 },
   tipTitle: { fontFamily: fonts.fredoka.semibold, fontSize: 14, color: '#fff' },
   tipText: { fontFamily: fonts.lexend.regular, fontSize: 14, color: 'rgba(255,255,255,0.85)', marginTop: 8, lineHeight: 22 },
+  testCard: { marginTop: 16, backgroundColor: colors.warm.card, borderRadius: 16, padding: 16, ...shadows.card },
+  testHeader: { flexDirection: 'row', alignItems: 'center', gap: 12 },
+  testEmoji: { fontSize: 32 },
+  testTitle: { fontFamily: fonts.fredoka.semibold, fontSize: 16, color: colors.warm.text },
+  testSubtitle: { fontFamily: fonts.lexend.regular, fontSize: 12, color: colors.warm.gray, marginTop: 2 },
+  testArrow: { fontSize: 24, color: colors.lavender.mid },
   back: { fontFamily: fonts.lexend.regular, fontSize: 14, color: colors.lavender.dark, textDecorationLine: 'underline' },
 });
