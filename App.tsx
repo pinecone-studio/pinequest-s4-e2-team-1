@@ -34,6 +34,7 @@ import PracticeScreen from './src/screens/PracticeScreen';
 import AchievementsScreen from './src/screens/AchievementsScreen';
 import ProfileScreen from './src/screens/ProfileScreen';
 import ParentScreen from './src/screens/ParentScreen';
+import DyslexiaTestScreen from './src/screens/DyslexiaTestScreen';
 
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -81,6 +82,7 @@ export default function App() {
             <Stack.Screen name="Practice" component={PracticeScreen} />
             <Stack.Screen name="Phonics" component={PhonicsScreen} />
             <Stack.Screen name="Parent" component={ParentScreen} />
+            <Stack.Screen name="DyslexiaTest" component={DyslexiaTestScreen} />
           </Stack.Navigator>
         </NavigationContainer>
       </SafeAreaProvider>

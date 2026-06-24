@@ -10,6 +10,7 @@ const cards = [
   { to: 'Stories', bg: colors.sage.light, icon: '🎧', title: 'Сонсож сур', sub: 'Шинэ дуу' },
   { to: 'Games', bg: colors.peach.lightest, icon: '🎮', title: 'Сургалтын тоглоом', sub: '4 хөгжилтэй тоглоом' },
   { to: 'Stories', bg: colors.slate.light, icon: '📚', title: 'Үлгэрийн ертөнц', sub: '12 үлгэр' },
+  { to: 'DyslexiaTest', bg: colors.lavender.lightest, icon: '🧠', title: 'Дислекси шалгалт', sub: '5 мин · 4-7 нас' },
 ];
 
 const stats: [string, string, string][] = [
