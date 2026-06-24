@@ -1,0 +1,117 @@
+import React, { useEffect, useRef } from 'react';
+import { View, Text, StyleSheet, Animated, Easing } from 'react-native';
+import { LinearGradient } from 'expo-linear-gradient';
+import LexiBot from '../components/LexiBot';
+import { colors, fonts, shadows } from '../theme';
+
+export default function SplashScreen({ navigation }: { navigation: any }) {
+  const shimmer = useRef(new Animated.Value(0)).current;
+
+  useEffect(() => {
+    Animated.loop(
+      Animated.timing(shimmer, {
+        toValue: 1,
+        duration: 1600,
+        easing: Easing.linear,
+        useNativeDriver: true,
+      })
+    ).start();
+
+    const t = setTimeout(() => navigation.replace('Main'), 3000);
+    return () => clearTimeout(t);
+  }, [navigation, shimmer]);
+
+  return (
+    <LinearGradient colors={['#F0E6D8', '#FAF0E8', '#FFFDF8']} style={styles.container}>
+      {/* Decorations */}
+      <Text style={[styles.deco, { top: 112, left: 32, fontSize: 24 }]}>✨</Text>
+      <Text style={[styles.deco, { top: 208, right: 40, fontSize: 20 }]}>⭐</Text>
+      <Text style={[styles.deco, { top: 320, left: 48, fontSize: 18 }]}>✨</Text>
+      <Text style={[styles.deco, { top: 96, right: 32, fontSize: 30 }]}>☁️</Text>
+      <Text style={[styles.deco, { top: 256, left: 16, fontSize: 24 }]}>☁️</Text>
+
+      {/* Logo */}
+      <View style={styles.logoWrap}>
+        <View style={styles.logoCard}>
+          <LinearGradient colors={['#E8D8C3', '#D8A48F']} style={styles.logoIcon}>
+            <Text style={{ fontSize: 24 }}>📖</Text>
+          </LinearGradient>
+          <Text style={styles.logoText}>
+            LEXI <Text style={{ color: colors.peach.dark }}>AI</Text>
+          </Text>
+        </View>
+        <Text style={styles.tagline}>Хамтдаа унших сурцгаая</Text>
+      </View>
+
+      {/* Bot */}
+      <LexiBot size="lg" animate="bob" />
+
+      {/* Progress */}
+      <View style={styles.progressWrap}>
+        <View style={styles.progressTrack}>
+          <LinearGradient
+            colors={['#D8A48F', '#E8D8C3', '#B8C9B0', '#CFC7E8', '#D8A48F']}
+            start={{ x: 0, y: 0 }}
+            end={{ x: 1, y: 0 }}
+            style={styles.progressFill}
+          />
+        </View>
+        <Text style={styles.progressText}>Адал явдлыг чинь бэлдэж байна…</Text>
+      </View>
+    </LinearGradient>
+  );
+}
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    paddingVertical: 64,
+  },
+  deco: { position: 'absolute' },
+  logoWrap: { alignItems: 'center', marginTop: 96, gap: 16 },
+  logoCard: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 12,
+    backgroundColor: colors.warm.card,
+    paddingHorizontal: 24,
+    paddingVertical: 14,
+    borderRadius: 24,
+    ...shadows.lavender,
+  },
+  logoIcon: {
+    width: 44,
+    height: 44,
+    borderRadius: 16,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  logoText: {
+    fontFamily: fonts.fredoka.bold,
+    fontSize: 36,
+    color: colors.lavender.dark,
+  },
+  tagline: {
+    fontFamily: fonts.fredoka.medium,
+    fontSize: 20,
+    color: colors.warm.text,
+    textAlign: 'center',
+  },
+  progressWrap: { width: '100%', paddingHorizontal: 48, paddingBottom: 16 },
+  progressTrack: {
+    height: 14,
+    borderRadius: 999,
+    overflow: 'hidden',
+    backgroundColor: 'rgba(255,255,255,0.6)',
+  },
+  progressFill: { height: '100%', width: '66%', borderRadius: 999 },
+  progressText: {
+    textAlign: 'center',
+    marginTop: 12,
+    fontFamily: fonts.lexend.regular,
+    fontSize: 14,
+    color: '#5B6472',
+  },
+});
